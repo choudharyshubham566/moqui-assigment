@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-facade-xml type="demo">
+  <moqui.tutorial.TestProduct description="Top wear" productName="Product_1" price="350"/>
+  <moqui.tutorial.TestProduct description="Bottom wear" productName="Product_2" price="650"/>
+</entity-facade-xml>

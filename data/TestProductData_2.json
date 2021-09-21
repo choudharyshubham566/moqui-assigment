@@ -1,0 +1,12 @@
+[
+  {"_dataType": "demo"},
+  { "_entity": "moqui.tutorial.TestProduct",
+    "description": "Product_3 created by JSON data",
+    "productName": "Product_3",
+    "price": "450"},
+
+  {"_entity": "moqui.tutorial.TestProduct",
+    "description": "Product_4 created by JSON data",
+    "productName": "Product_4",
+    "price": "850"}
+]

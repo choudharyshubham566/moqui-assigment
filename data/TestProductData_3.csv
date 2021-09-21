@@ -1,0 +1,6 @@
+# The first record is ${entityName or serviceName},${dataType}
+moqui.tutorial.TestProduct,demo
+# Second record is the list of field names and each additional record is the value of those fields.
+description,productName,price
+Product_5 created by CSV file,Product_5,700
+Product_6 created by CSV file,Product_6,900
