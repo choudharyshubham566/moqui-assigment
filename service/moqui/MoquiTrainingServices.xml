@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+  <service verb="create" noun="TestProduct" type="entity-auto">
+    <in-parameters>
+      <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
+      <parameter name="productName" required="true"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="productId"/>
+    </out-parameters>
+  </service>
+</services>
