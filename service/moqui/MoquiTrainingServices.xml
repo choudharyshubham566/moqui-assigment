@@ -9,4 +9,40 @@
       <parameter name="productId"/>
     </out-parameters>
   </service>
+  
+  <service verb="create" noun="ProductService">
+    <in-parameters>
+      <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
+      <parameter name="productName" required="true"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="productId"/>
+    </out-parameters>
+    <actions>
+      <service-call name="create#moqui.tutorial.TestProduct" in-map="context" out-map="context"/>
+    </actions>
+  </service>
+  
+  <service verb="create" noun="TestProductService" type="script"
+           location="component://moqui-assigment/script/org/MoquiServices.xml">
+    <in-parameters>
+      <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
+      <parameter name="productName" required="true"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="productId"/>
+    </out-parameters>
+  </service>
+  
+  <service verb="create" noun="ProductRecordService" type="script"
+           location="component://moqui-assigment/src/main/groovy/moqui/MoquiTrainingScript.groovy">
+    <in-parameters>
+      <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
+      <parameter name="productName" required="true"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="productId"/>
+    </out-parameters>
+  </service>
+  
 </services>
