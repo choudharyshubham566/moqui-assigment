@@ -13,7 +13,6 @@ along with this software (see the LICENSE.md file). If not, see
 <http://creativecommons.org/publicdomain/zero/1.0/>.
 -->
 <actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-actions-2.1.xsd">
-  <service-call name="moqui.MoquiTrainingServices.TestProductService" in-map="context" out-map="context">
-  </service-call>
-  <set field = "product_id" from="context.productId"/>
+  <service-call name="moqui.MoquiTrainingServices.createTestProductService" in-map="context" out-map="context"/>
+  <set field="productId"/>
 </actions>
