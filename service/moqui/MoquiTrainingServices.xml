@@ -45,4 +45,29 @@
     </out-parameters>
   </service>
   
+  <service verb="find" noun="TestProduct">
+    <in-parameters>
+      <parameter name = "productId" required="false"/>
+      <parameter name="productName" required="false"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="testProductList" type="List">
+        <parameter name = "testProductMap" type="Map">
+          <parameter name = "productId"/>
+          <parameter name = "productName"/>
+          <parameter name = "description"/>
+        </parameter>
+      </parameter>
+    </out-parameters>
+    <actions>
+      <entity-find entity-name = "moqui.tutorial.TestProduct" list="testProductList">
+        <econditions combine="or">
+          <econdition field-name = "productId" ignore-if-empty="true"/>
+          <econdition field-name = "productName" operator="like" value="%${productName}%" ignore-case="true" ignore-if-empty="true"/>
+        </econditions>
+        <select-field field-name = "productId,productName,description"/>
+      </entity-find>
+    </actions>
+  </service>
+  
 </services>
