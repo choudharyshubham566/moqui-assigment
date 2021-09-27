@@ -70,4 +70,32 @@
     </actions>
   </service>
   
+  <service verb="store" noun="TestProduct">
+    <in-parameters>
+      <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
+      <parameter name="productName" required="true"/>
+    </in-parameters>
+    <out-parameters>
+      <parameter name="productId"/>
+    </out-parameters>
+<!--    Service implementation to update/create the record-->
+    <actions>
+      <entity-find entity-name = "moqui.tutorial.TestProduct" list="productList">
+        <econdition field-name = "productName" ignore-case="true"/>
+      </entity-find>
+      <if condition="productList">
+<!--        Update the record-->
+          <then>
+            <set field = "productRecord" from="productList.first"/>
+            <entity-set value-field = "productRecord" map="context"/>
+            <entity-update value-field = "productRecord"/>
+            <set field = "productId" from="productRecord.productId"/>
+          </then>
+      <else>
+        <service-call name = "create#moqui.tutorial.TestProduct" in-map="context" out-map="context"/>
+      </else>
+      </if>
+    </actions>
+  </service>
+  
 </services>
