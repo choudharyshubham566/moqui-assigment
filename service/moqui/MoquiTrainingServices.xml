@@ -9,7 +9,7 @@
       <parameter name="productId"/>
     </out-parameters>
   </service>
-  
+
   <service verb="create" noun="ProductService">
     <in-parameters>
       <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
@@ -22,7 +22,7 @@
       <service-call name="create#moqui.tutorial.TestProduct" in-map="context" out-map="context"/>
     </actions>
   </service>
-  
+
   <service verb="create" noun="TestProductService" type="script"
            location="component://moqui-assigment/script/org/MoquiServices.xml">
     <in-parameters>
@@ -33,7 +33,7 @@
       <parameter name="productId"/>
     </out-parameters>
   </service>
-  
+
   <service verb="create" noun="ProductRecordService" type="script"
            location="component://moqui-assigment/src/main/groovy/moqui/MoquiTrainingScript.groovy">
     <in-parameters>
@@ -44,7 +44,7 @@
       <parameter name="productId"/>
     </out-parameters>
   </service>
-  
+
   <service verb="find" noun="TestProduct">
     <in-parameters>
       <parameter name = "productId" required="false"/>
@@ -69,7 +69,7 @@
       </entity-find>
     </actions>
   </service>
-  
+
   <service verb="store" noun="TestProduct">
     <in-parameters>
       <auto-parameters entity-name="moqui.tutorial.TestProduct" include="nonpk"/>
@@ -121,5 +121,29 @@
             <set field="productId" from="newProduct.productId"/>
         </actions>
     </service>
-  
+
+    <service verb="find" noun="ProductDetailService">
+        <in-parameters> <parameter name="productId" required="true"> </parameter></in-parameters>
+        <out-parameters>
+            <parameter name="productDetailMap" type="Map">
+                <parameter name="productId"/>
+                <parameter name="productName"/>
+                <parameter name="description"/>
+                <parameter name="price"/>
+                <parameter name="priceUomId"/>
+            </parameter>
+        </out-parameters>
+
+        <actions>
+            <entity-find-one entity-name="mantle.product.Product" value-field="product">
+                <field-map field-name="productId"/>
+            </entity-find-one>
+            <if condition="!product">
+                <message error="true">This product does not exist in the system</message><return/>
+            </if>
+            <entity-find-related-one value-field="product" relationship-name="mantle.product.ProductPrice" to-value-field="productPrice"/>
+            <set field="productDetailMap" from="[productId:productId, productName:product.productName, description:product.description, price:productPrice.price, priceUomId:productPrice.priceUomId]"/>
+        </actions>
+    </service>
+
 </services>
