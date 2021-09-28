@@ -100,9 +100,11 @@
 
     <service verb="store" noun="Product">
         <in-parameters>
-            <auto-parameters entity-name="mantle.product.Product" include="nonpk"/>
+          <!--  <auto-parameters entity-name="mantle.product.Product" include="nonpk"/> -->
+            <parameter name="productName"/>
+            <parameter name="description"/>
             <parameter name="price" type="BigDecimal"/>
-            <parameter name="priceUomId" default-value="USD"/>
+            <parameter name="priceUomId"/>
         </in-parameters>
         <out-parameters>
             <parameter name="productId"/>
@@ -110,6 +112,11 @@
 
         <actions>
             <service-call name="create#mantle.product.Product" in-map="[productName:productName, description:description]" out-map="newProduct"/>
+            <if condition="price">
+                <if condition="!priceUomId">
+                    <message error="true">priceUomId is required for product price.</message>
+                </if>
+            </if>
             <service-call name="create#mantle.product.ProductPrice" in-map="[productId:newProduct.productId, price:price, priceUomId:priceUomId]" out-map="newProductPrice"/>
             <set field="productId" from="newProduct.productId"/>
         </actions>
