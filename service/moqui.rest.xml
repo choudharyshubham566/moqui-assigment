@@ -3,15 +3,32 @@
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/rest-api-2.1.xsd"
           name="moquiTest" displayName="Learning Moqui REST API" version="1.0.0"
           description="This API is to learn how to create an API in the Moqui">
-    <!-- Resource to fetch the products with details -->
+    <!-- Resource to create & fetch the TestProduct records with details -->
     <resource name="products" require-authentication="anonymous-all">
+        <!-- Request to create TestProduct record -->
+        <method type="post">
+            <service name="moqui.MoquiTrainingServices.create#TestProduct"/>
+        </method>
+
+        <!-- Request to get list of TestProduct records -->
         <method type="get">
             <entity name="moqui.tutorial.TestProduct" operation="list"/>
         </method>
+
+        <!-- Request to update/create TestProduct record by give productName -->
+        <method type="put">
+            <service name="moqui.MoquiTrainingServices.store#TestProduct"/>
+        </method>
+
+        <!-- Request to get/delete single record from TestProduct by give productId -->
         <id name="productId">
             <method type="get">
                 <entity name="moqui.tutorial.TestProduct" operation="one"/>
             </method>
+            <method type="delete">
+                <entity name="moqui.tutorial.TestProduct" operation="delete"/>
+            </method>
         </id>
+
     </resource>
 </resource>
