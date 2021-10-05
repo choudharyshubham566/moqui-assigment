@@ -4,7 +4,7 @@
           name="moquiTest" displayName="Learning Moqui REST API" version="1.0.0"
           description="This API is to learn how to create an API in the Moqui">
     <!-- Resource to create & fetch the TestProduct records with details -->
-    <resource name="products" require-authentication="anonymous-all">
+    <resource name="products">
         <!-- Request to create TestProduct record -->
         <method type="post">
             <service name="moqui.MoquiTrainingServices.create#TestProduct"/>
@@ -29,6 +29,5 @@
                 <entity name="moqui.tutorial.TestProduct" operation="delete"/>
             </method>
         </id>
-
     </resource>
 </resource>
